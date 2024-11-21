@@ -1,20 +1,16 @@
 package stepDefinitions;
 
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import pageObject.Base_PO;
 
-import static driver.DriverFactory.getDriver;
-
-public class Contact_US_Steps extends AbstractSeleniumInit {
+public class Contact_US_Steps extends Base_PO {
 
 
     private WebDriver driver = getDriver();
@@ -22,7 +18,7 @@ public class Contact_US_Steps extends AbstractSeleniumInit {
 
     @Given("I access the webdriver university contact us page")
     public void i_access_the_webdriver_university_contact_us_page() {
-        driver.get("https://www.webdriveruniversity.com/Contact-Us/contactus.html");
+        navigateTo("https://www.webdriveruniversity.com/Contact-Us/contactus.html");
     }
 
     @When("I enter a unique first name")
@@ -52,28 +48,28 @@ public class Contact_US_Steps extends AbstractSeleniumInit {
 
     @When("I enter a specific first name {word}")
     public void i_enter_a_specific_first_name(String firstName) {
-        driver.findElement(By.xpath("//input[@name='first_name']")).sendKeys(firstName);
+        sendKeys(By.xpath("//input[@name='first_name']"), firstName);
     }
 
     @When("I enter a specific last name {word}")
     public void i_enter_a_specific_last_name(String lastName) {
-        driver.findElement(By.xpath("//input[@name=\"last_name\"]")).sendKeys(lastName);
+        sendKeys(By.xpath("//input[@name=\"last_name\"]"),lastName);
     }
 
     @When("I enter a specific email address {word}")
     public void i_enter_a_specific_email_address(String email) {
-        driver.findElement(By.xpath("//input[@name=\"email\"]")).sendKeys(email);
+        sendKeys(By.xpath("//input[@name=\"email\"]"),email);
     }
 
     @When("I enter a specific comment {string}")
     public void i_enter_a_specific_comment(String string) {
-        driver.findElement(By.xpath("//textarea[@name=\"message\"]")).sendKeys(string);
+        sendKeys(By.xpath("//textarea[@name=\"message\"]"),string);
     }
 
 
     @And("I click on the submit button")
     public void i_click_on_the_submit_button() {
-        driver.findElement(By.xpath("//input[@value=\"SUBMIT\"]")).click();
+        click(By.xpath("//input[@value=\"SUBMIT\"]"));
     }
 
     @Then("I should be presented with a successful contact us submission message")

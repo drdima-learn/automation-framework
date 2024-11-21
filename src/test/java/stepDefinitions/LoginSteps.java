@@ -1,25 +1,23 @@
 package stepDefinitions;
 
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
+import pageObject.Base_PO;
 
-import static driver.DriverFactory.getDriver;
-
-public class LoginSteps extends AbstractSeleniumInit {
+public class LoginSteps extends Base_PO {
 
     private WebDriver driver = getDriver();
 
     @Given("I access the webdriver university login page")
     public void i_access_the_webdriver_university_login_page() {
-        driver.get("https://www.webdriveruniversity.com/Login-Portal/index.html");
+
+        navigateTo("https://www.webdriveruniversity.com/Login-Portal/index.html");
     }
+
     @When("I enter a unique user name")
     public void i_enter_a_unique_user_name() {
         //driver.findElement(By.id("text")).sendKeys("username" + generateRandomString(5));
@@ -47,24 +45,25 @@ public class LoginSteps extends AbstractSeleniumInit {
 
     @When("I click on the login button")
     public void i_click_on_the_login_button() {
-        driver.findElement(By.id("login-button")).click();
+        //driver.findElement(By.id("login-button")).click();
+        click(By.id("login-button"));
 
     }
+
     @Then("I should be presented with a unsuccessful login message")
     public void i_should_be_presented_with_a_unsuccessful_login_message() {
         Assert.assertEquals(getAlertText(), "validation failed");
     }
 
 
-
-
     @When("I enter a specific user name {word}")
     public void i_enter_a_specific_user_name(String userName) {
-        driver.findElement(By.id("text")).sendKeys(userName);
+        sendKeys(By.id("text"),userName);
     }
+
     @When("I enter a specific password {word}")
     public void i_enter_a_specific_password(String password) {
-        driver.findElement(By.id("password")).sendKeys(password);
+        sendKeys(By.id("password"),password);
     }
 
     @Then("I should be presented with a successful login message")
@@ -73,10 +72,9 @@ public class LoginSteps extends AbstractSeleniumInit {
         Assert.assertEquals(getAlertText(), "validation succeeded");
     }
 
-    private String getAlertText(){
+    private String getAlertText() {
         return driver.switchTo().alert().getText();
     }
-
 
 
     @Then("I should be presented with the following validation message {}")
@@ -84,8 +82,6 @@ public class LoginSteps extends AbstractSeleniumInit {
         String loginMessage = getAlertText();
         Assert.assertEquals(loginMessage, expectedMessage);
     }
-
-
 
 
 }
