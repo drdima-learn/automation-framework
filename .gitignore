@@ -1,0 +1,47 @@
+# Ignore IDE files
+.idea/
+.vscode/
+
+_tmp
+
+# Ignore Maven files
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+
+# Ignore Java files
+*.class
+*.jar
+*.war
+*.ear
+
+# Ignore Spring Boot files
+spring-boot-starter-*
+spring-boot-autoconfigure-*
+
+# Ignore logs
+logs/
+*.log
+*.out
+
+# Ignore OS files
+.DS_Store
+Thumbs.db
+
+# Ignore other files
+*.tmp
+*.bak
+*.swp
+*.swo
+*.zip
+*.tar
+*.gz
+*.bz2
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# But keep example environment file
+!.env.example
