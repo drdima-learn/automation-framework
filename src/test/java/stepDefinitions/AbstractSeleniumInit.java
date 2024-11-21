@@ -9,19 +9,19 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 public abstract class AbstractSeleniumInit {
 
-    protected WebDriver driver;
+    //protected WebDriver driver;
     
-    protected void initializeDriver() {
-        ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.setPageLoadStrategy(PageLoadStrategy.NORMAL);
-        driver = new ChromeDriver(chromeOptions);
-        driver.manage().window().maximize();
-    }
-
-
-    protected void tearDown() {
-        driver.quit();
-    }
+//    protected void initializeDriver() {
+//        ChromeOptions chromeOptions = new ChromeOptions();
+//        chromeOptions.setPageLoadStrategy(PageLoadStrategy.NORMAL);
+//        driver = new ChromeDriver(chromeOptions);
+//        driver.manage().window().maximize();
+//    }
+//
+//
+//    protected void tearDown() {
+//        driver.quit();
+//    }
 
     public String generateRandomNumber(int length) {
         return RandomStringUtils.randomNumeric(length);

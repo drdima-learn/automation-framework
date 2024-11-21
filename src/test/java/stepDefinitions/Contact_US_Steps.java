@@ -8,22 +8,16 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+
+import static driver.DriverFactory.getDriver;
 
 public class Contact_US_Steps extends AbstractSeleniumInit {
 
 
-    @Before
-    public void setup() {
-        initializeDriver();
-    }
-
-    @After
-    public void tearDown() {
-        super.tearDown();
-    }
-
+    private WebDriver driver = getDriver();
 
 
     @Given("I access the webdriver university contact us page")

@@ -7,19 +7,14 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
+
+import static driver.DriverFactory.getDriver;
 
 public class LoginSteps extends AbstractSeleniumInit {
 
-    @Before
-    public void setup() {
-        initializeDriver();
-    }
-
-    @After
-    public void tearDown() {
-        super.tearDown();
-    }
+    private WebDriver driver = getDriver();
 
     @Given("I access the webdriver university login page")
     public void i_access_the_webdriver_university_login_page() {

@@ -1,9 +1,10 @@
-@login
+@login @regression
 
 Feature: WebDriver University - Login
 
   Background:
     Given I access the webdriver university login page
+
 
   Scenario: Validate unsuccessful Login - Unique Data
     When I enter a unique user name
@@ -24,7 +25,7 @@ Feature: WebDriver University - Login
     Then I should be presented with the following validation message <loginValidationMessage>
 
     Examples:
-      | username   | password     | loginValidationMessage |
-      | webdriver  | webdriver123 | validation succeeded   |
-      | webdriver  | webdriver1   | validation failed      |
+      | username  | password     | loginValidationMessage |
+      | webdriver | webdriver123 | validation succeeded   |
+      | webdriver | webdriver1   | validation failed      |
       | joe_blogs | password1    | validation failed      |
