@@ -21,8 +21,8 @@ public class LoginSteps extends AbstractSeleniumInit {
         super.tearDown();
     }
 
-    @Given("I access the webdriver university login us page")
-    public void i_access_the_webdriver_university_login_us_page() {
+    @Given("I access the webdriver university login page")
+    public void i_access_the_webdriver_university_login_page() {
         driver.get("https://www.webdriveruniversity.com/Login-Portal/index.html");
     }
     @When("I enter a unique user name")
@@ -30,11 +30,26 @@ public class LoginSteps extends AbstractSeleniumInit {
         //driver.findElement(By.id("text")).sendKeys("username" + generateRandomString(5));
         i_enter_a_specific_user_name("username" + generateRandomString(5));
     }
+
+    @When("I enter a username {word}")
+    public void i_enter_a_username_webdriver(String userName) {
+        i_enter_a_specific_user_name(userName);
+    }
+
+
     @When("I enter a unique password")
     public void i_enter_a_unique_password() {
         //driver.findElement(By.id("password")).sendKeys("password" + generateRandomString(5));
         i_enter_a_specific_password("password" + generateRandomString(5));
     }
+
+    @When("I enter a password {}")
+    public void i_enter_a_password(String password) {
+        // Write code here that turns the phrase above into concrete actions
+        i_enter_a_specific_password(password);
+    }
+
+
     @When("I click on the login button")
     public void i_click_on_the_login_button() {
         driver.findElement(By.id("login-button")).click();
@@ -66,6 +81,15 @@ public class LoginSteps extends AbstractSeleniumInit {
     private String getAlertText(){
         return driver.switchTo().alert().getText();
     }
+
+
+
+    @Then("I should be presented with the following validation message {}")
+    public void i_should_be_presented_with_the_following_validation_message(String expectedMessage) {
+        String loginMessage = getAlertText();
+        Assert.assertEquals(loginMessage, expectedMessage);
+    }
+
 
 
 
