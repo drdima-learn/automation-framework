@@ -8,37 +8,23 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
-import org.openqa.selenium.PageLoadStrategy;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
 
-public class Contact_US_Steps {
-    private WebDriver driver;
+public class Contact_US_Steps extends AbstractSeleniumInit {
+
 
     @Before
     public void setup() {
-        //System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/src/main/java/drivers/chromedriver.exe");
-        ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.setPageLoadStrategy(PageLoadStrategy.NORMAL);
-        driver = new ChromeDriver(chromeOptions);
-        driver.manage().window().maximize();
+        initializeDriver();
     }
 
     @After
     public void tearDown() {
-        //driver.quit();
+        super.tearDown();
     }
 
-    public String generateRandomNumber(int length) {
-        return RandomStringUtils.randomNumeric(length);
-    }
 
-    public String generateRandomString(int length) {
-        return RandomStringUtils.randomAlphabetic(length);
-    }
 
     @Given("I access the webdriver university contact us page")
     public void i_access_the_webdriver_university_contact_us_page() {
@@ -74,14 +60,17 @@ public class Contact_US_Steps {
     public void i_enter_a_specific_first_name(String firstName) {
         driver.findElement(By.xpath("//input[@name='first_name']")).sendKeys(firstName);
     }
+
     @When("I enter a specific last name {word}")
     public void i_enter_a_specific_last_name(String lastName) {
         driver.findElement(By.xpath("//input[@name=\"last_name\"]")).sendKeys(lastName);
     }
+
     @When("I enter a specific email address {word}")
     public void i_enter_a_specific_email_address(String email) {
         driver.findElement(By.xpath("//input[@name=\"email\"]")).sendKeys(email);
     }
+
     @When("I enter a specific comment {string}")
     public void i_enter_a_specific_comment(String string) {
         driver.findElement(By.xpath("//textarea[@name=\"message\"]")).sendKeys(string);
@@ -98,7 +87,6 @@ public class Contact_US_Steps {
         WebElement contactUsSubmissionMessage = driver.findElement(By.xpath("//div[@id='contact_reply']/h1"));
         Assert.assertEquals(contactUsSubmissionMessage.getText(), "Thank You for your Message!");
     }
-
 
 
 }
