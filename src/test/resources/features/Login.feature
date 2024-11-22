@@ -12,6 +12,7 @@ Feature: WebDriver University - Login
     And I click on the login button
     Then I should be presented with a unsuccessful login message
 
+  @login1
   Scenario: Validate Successful Login - Specific Data
     When I enter a specific user name webdriver
     And I enter a specific password webdriver123

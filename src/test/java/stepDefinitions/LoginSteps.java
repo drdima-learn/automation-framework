@@ -5,17 +5,27 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.picocontainer.annotations.Inject;
 import org.testng.Assert;
 import pageObject.Base_PO;
+import pageObject.Login_PO;
 
 public class LoginSteps extends Base_PO {
 
     private WebDriver driver = getDriver();
 
+    
+    private Login_PO loginPo;
+
+    public LoginSteps(Login_PO loginPo) {
+        this.loginPo = loginPo;
+    }
+
     @Given("I access the webdriver university login page")
     public void i_access_the_webdriver_university_login_page() {
 
-        navigateTo("https://www.webdriveruniversity.com/Login-Portal/index.html");
+        //navigateTo("https://www.webdriveruniversity.com/Login-Portal/index.html");
+        loginPo.navigateToWebDriverUniversityLoginPage();
     }
 
     @When("I enter a unique user name")
@@ -46,7 +56,8 @@ public class LoginSteps extends Base_PO {
     @When("I click on the login button")
     public void i_click_on_the_login_button() {
         //driver.findElement(By.id("login-button")).click();
-        click(By.id("login-button"));
+        //click(By.id("login-button"));
+        loginPo.clickLoginButton();
 
     }
 
@@ -58,12 +69,12 @@ public class LoginSteps extends Base_PO {
 
     @When("I enter a specific user name {word}")
     public void i_enter_a_specific_user_name(String userName) {
-        sendKeys(By.id("text"),userName);
+        loginPo.setUserName(userName);
     }
 
     @When("I enter a specific password {word}")
     public void i_enter_a_specific_password(String password) {
-        sendKeys(By.id("password"),password);
+        loginPo.setPassword(password);
     }
 
     @Then("I should be presented with a successful login message")
