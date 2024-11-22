@@ -8,6 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 import java.time.Duration;
 
@@ -56,6 +57,24 @@ public class Base_PO {
 
     private static WebDriverWait webDriverWaitFactory() {
         return new WebDriverWait(DriverFactory.getDriver(), Duration.ofSeconds(10));
+    }
+
+    public void waitForAlertAndValidateText(String expectedText) {
+        //String alertText =  getDriver().switchTo().alert().getText();
+        String alertText =  webDriverWaitFactory().until(ExpectedConditions.alertIsPresent()).getText();
+        Assert.assertEquals(alertText, expectedText);
+
+
+
+    }
+
+    public void validateSuccessMessage() {
+        waitForAlertAndValidateText("validation succeeded");
+    }
+
+
+    public void validateUnSuccessMessage() {
+        waitForAlertAndValidateText("validation failed");
     }
 
 

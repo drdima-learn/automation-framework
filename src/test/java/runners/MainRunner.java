@@ -7,8 +7,8 @@ import org.testng.annotations.DataProvider;
 @CucumberOptions(
         features = {"classpath:features"},
         /*tags = "@contact-us or @login",*/
-        /*tags = "@regression",*/
-        tags = "@login1",
+        tags = "@regression",
+        //tags = "@login1",
         glue = "stepDefinitions",
         monochrome = true,
         dryRun = false,
